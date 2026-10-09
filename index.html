@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Present Continuous — Uyga Vazifa (A1 Boshlang'ich Daraja)</title>
+  <title>Stative Verbs & Need — Uyga Vazifa (A1 Daraja)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-
   <style>
+
     :root {
       --bg: #070d18;
       --card: #0f172a;
@@ -21,6 +21,7 @@
       --primary-glow: rgba(99, 102, 241, 0.35);
       --accent: #8b5cf6;
       --emerald: #10b981;
+      --amber: #f59e0b;
       --rose: #ef4444;
       --text: #f8fafc;
       --text-muted: #94a3b8;
@@ -68,529 +69,1455 @@
     .hero-title { font-size: 1.7rem; font-weight: 900; color: #fff; margin-bottom: 6px; }
     .hero-sub { color: var(--text-muted); font-size: 0.92rem; }
 
-    .formula-box {
-      margin-top: 1rem;
-      background: rgba(99, 102, 241, 0.1);
-      border: 1px solid rgba(99, 102, 241, 0.3);
-      border-radius: var(--radius-md);
-      padding: 12px 16px;
-      font-size: 0.9rem;
-      color: #e2e8f0;
-    }
-    .formula-box b { color: #38bdf8; }
-
-    .student-input-box {
-      margin-top: 1.5rem;
+    .rule-box {
+      margin-top: 1.3rem;
       background: rgba(15, 23, 42, 0.8);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
+      border-left: 4px solid var(--primary);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
       padding: 1.2rem;
+      font-size: 0.9rem;
     }
-    .input-field {
-      width: 100%;
-      background: rgba(30, 41, 59, 0.6);
-      border: 1px solid var(--border);
+    .rule-box h4 { color: #fff; margin-bottom: 6px; font-size: 1rem; }
+    .rule-box p { color: var(--text-muted); margin-bottom: 6px; }
+    .formula-badge {
+      display: inline-block;
+      background: rgba(99, 102, 241, 0.15);
+      border: 1px solid rgba(99, 102, 241, 0.35);
+      padding: 4px 12px;
       border-radius: var(--radius-sm);
-      padding: 12px 14px;
-      color: #fff;
-      font-size: 0.95rem;
-      outline: none;
-      transition: all 0.2s ease;
+      font-weight: 700;
+      color: #a5b4fc;
+      margin: 4px 0;
     }
-    .input-field:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25); }
 
-    .section-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 2rem;
-      margin-bottom: 2rem;
-      box-shadow: var(--shadow);
+    /* VOCABULARY GRID */
+    .vocab-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 12px;
+      margin-top: 1rem;
     }
-    .section-title { font-size: 1.25rem; font-weight: 800; margin-bottom: 4px; }
-    .section-desc { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem; }
-
-    .q-item { margin-bottom: 1.6rem; padding-bottom: 1.4rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
-    .q-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-    .q-text { font-weight: 700; font-size: 1rem; margin-bottom: 12px; color: #f1f5f9; }
-    .options-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-    @media (max-width: 600px) { .options-grid { grid-template-columns: 1fr; } }
-    .opt-btn {
+    .vocab-card {
       background: rgba(30, 41, 59, 0.5);
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
       padding: 12px 14px;
-      color: #cbd5e1;
-      font-size: 0.95rem;
-      font-weight: 600;
-      text-align: left;
-      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .vocab-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+      background: rgba(30, 41, 59, 0.8);
+    }
+    .vocab-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px; }
+    .vocab-word { font-weight: 800; font-size: 1rem; color: #fff; }
+    .vocab-pos { font-size: 0.72rem; color: var(--accent); font-weight: 600; text-transform: uppercase; }
+    .vocab-uz { color: #6ee7b7; font-size: 0.85rem; font-weight: 600; margin-bottom: 4px; }
+    .vocab-ex { font-size: 0.78rem; color: var(--text-muted); font-style: italic; border-left: 2px solid rgba(99, 102, 241, 0.4); padding-left: 6px; margin-top: 4px; }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      margin: 2.5rem 0 1rem;
       display: flex;
       align-items: center;
       gap: 10px;
-      transition: all 0.2s ease;
-    }
-    .opt-btn:hover:not(:disabled) { background: var(--card-hover); border-color: rgba(99, 102, 241, 0.4); color: #fff; }
-    .opt-btn.correct { background: rgba(16, 185, 129, 0.18) !important; border-color: var(--emerald) !important; color: #6ee7b7 !important; }
-    .opt-btn.wrong { background: rgba(239, 68, 68, 0.18) !important; border-color: var(--rose) !important; color: #fca5a5 !important; }
-    .opt-badge { width: 24px; height: 24px; border-radius: 6px; background: rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 800; flex-shrink: 0; }
-
-    .reorder-box { margin-bottom: 1.5rem; background: rgba(15, 23, 42, 0.6); padding: 14px; border-radius: var(--radius-md); border: 1px solid var(--border); }
-    .reorder-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
-    .chip-btn {
-      background: rgba(99, 102, 241, 0.15);
-      border: 1px solid rgba(99, 102, 241, 0.35);
-      color: #cbd5e1;
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-    .chip-btn:hover { background: var(--primary); color: #fff; }
-    .chip-btn:disabled { opacity: 0.3; cursor: not-allowed; }
-
-    textarea.input-field { min-height: 100px; resize: vertical; line-height: 1.5; }
-
-    .btn-submit {
-      width: 100%;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      border: none;
       color: #fff;
-      font-size: 1.1rem;
-      font-weight: 800;
-      padding: 16px 24px;
-      border-radius: var(--radius-md);
-      cursor: pointer;
+    }
+    .section-title span {
+      background: var(--primary);
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      box-shadow: 0 8px 25px var(--primary-glow);
-      transition: all 0.2s ease;
-      margin-top: 1.5rem;
+      font-size: 14px;
     }
-    .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 12px 30px var(--primary-glow); }
-    .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
 
-    .toast-box { margin-top: 14px; padding: 14px; border-radius: var(--radius-md); font-weight: 700; font-size: 0.9rem; display: none; text-align: center; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.4rem;
+      margin-bottom: 1.2rem;
+      box-shadow: var(--shadow);
+    }
+    .q-text { font-size: 0.98rem; font-weight: 600; margin-bottom: 0.8rem; color: #fff; }
+    .q-context { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0.8rem; }
+
+    /* MCQs */
+    .options-grid { display: grid; grid-template-columns: 1fr; gap: 8px; }
+    @media(min-width: 600px) { .options-grid { grid-template-columns: 1fr 1fr; } }
+    .option-label {
+      background: rgba(30, 41, 59, 0.5);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: var(--text);
+      transition: all 0.2s;
+    }
+    .option-label:hover { border-color: var(--primary); background: var(--card-hover); }
+    .option-label input { accent-color: var(--primary); }
+
+    /* Inputs */
+    .input-field {
+      width: 100%;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      color: #fff;
+      font-size: 0.92rem;
+      outline: none;
+      transition: border 0.2s;
+    }
+    .input-field:focus { border-color: var(--border-focus); box-shadow: 0 0 10px var(--primary-glow); }
+    textarea.input-field { min-height: 85px; resize: vertical; }
+
+    .err-box {
+      background: rgba(239, 68, 68, 0.08);
+      border-left: 3px solid var(--rose);
+      padding: 8px 12px;
+      margin-bottom: 10px;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-size: 0.92rem;
+      color: #fca5a5;
+    }
+
+    .student-info-box {
+      background: rgba(99, 102, 241, 0.08);
+      border: 1px solid rgba(99, 102, 241, 0.25);
+      border-radius: var(--radius-md);
+      padding: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .submit-bar {
+      margin-top: 3rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.8rem;
+      text-align: center;
+      box-shadow: 0 20px 40px -15px rgba(0,0,0,0.8);
+    }
+    .submit-btn {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-md);
+      padding: 14px 38px;
+      font-size: 1.05rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 0 20px var(--primary-glow);
+      transition: all 0.2s;
+    }
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px var(--primary-glow);
+    }
+    .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    .toast {
+      display: none;
+      margin-top: 15px;
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
   </style>
 </head>
 <body>
 
   <header>
     <div class="header-inner">
-      <div class="brand">
-        <div class="brand-icon">⚡</div>
-        <div>
-          <div>TeacherOS Vazifalar</div>
-          <div style="font-size: 0.7rem; color: var(--text-muted); font-weight: 600;">PRESENT CONTINUOUS (HOZIRGI DAVOMLI ZAMON)</div>
-        </div>
-      </div>
-      <span class="badge">A1 DARAJA (BOSHLANG'ICH)</span>
+      <a href="#" class="brand">
+        <div class="brand-icon">🧠</div>
+        <span>Ulunur's English</span>
+      </a>
+      <div class="badge">A1 Daraja</div>
     </div>
   </header>
 
   <main>
+    <!-- HERO CARD -->
     <div class="hero-card">
-      <div style="font-size: 0.78rem; font-weight: 700; color: #a5b4fc; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px;">
-        📖 Uyga Vazifa
-      </div>
-      <h1 class="hero-title">Present Continuous Tense</h1>
-      <p class="hero-sub">
-        Ayni damda, hozir sodir bo'layotgan ish-harakatlar uchun ishlatiladi.
-      </p>
+      <h1 class="hero-title">Stative vs Dynamic Verbs & 'Need' Qolipi</h1>
+      <p class="hero-sub">Holat va harakat fe'llari farqi hamda 'need + ot' va 'need to + fe'l' qoliplari</p>
 
-      <div class="formula-box">
-        💡 <b>Qoida formulasi:</b><br>
-        • <b>I</b> + <b>am</b> + fe'l-<b>ing</b> (Masalan: <i>I am reading</i>)<br>
-        • <b>He / She / It</b> + <b>is</b> + fe'l-<b>ing</b> (Masalan: <i>He is eating</i>)<br>
-        • <b>You / We / They</b> + <b>are</b> + fe'l-<b>ing</b> (Masalan: <i>They are playing</i>)<br>
-        • Kalit so'zlar: <i>now (hozir), right now (ayni damda), at the moment (shu paytda), Look! (Qara!), Listen! (Eshit!)</i>
-      </div>
+      <div class="rule-box">
+        <h4>💡 Grammatika Qoidasi va Asosiy Mohiyat:</h4>
+        
+    <p><b>1. Holat (Stative) vs Harakat (Dynamic) fe'llari:</b><br>
+    • <b>Harakat fe'llari (run, play, eat, write)</b> $\rightarrow$ hozir bo'layotgan ishda <b>-ing</b> oladi (<i>I am running</i>).<br>
+    • <b>Holat fe'llari (know, like, want, understand, remember, belong)</b> $\rightarrow$ tuyg'u, fikr va egalik bo'lgani uchun <b>-ing OLMAYDI</b> (<i>I know</i> ✅, <i>I am knowing</i> ❌).</p>
 
-      <div class="student-input-box">
-        <label style="font-size: 0.85rem; font-weight: 700; color: #cbd5e1; display: block; margin-bottom: 6px;">👤 Ism va Familiyangizni kiriting:</label>
-        <input type="text" id="student-name-input" class="input-field" placeholder="Masalan: Shaxzoda Olimova">
+    <div style="margin:10px 0;">
+      <span class="formula-badge">need + ot (noun)</span> ➔ <b>Biror narsaga ehtiyoj:</b> <i>"I need a pen." / "She needs water."</i><br>
+      <span class="formula-badge">need + to + fe'l (verb)</span> ➔ <b>Biror ishni qilishga ehtiyoj:</b> <i>"I need to study." / "He needs to sleep."</i>
+    </div>
+    <p style="color:#6ee7b7; font-weight:600; margin-top:6px;">
+      ⚠️ Fe'l kelsa, albatta <b>'to'</b> qo'yiladi: <i>"I need to drink water"</i> (NOT <i>"I need drink"</i> ❌).
+    </p>
+  
       </div>
     </div>
 
-    <!-- 1-BO'LIM: 10 ta MCQ -->
-    <section class="section-card">
-      <h2 class="section-title">🎯 1-Bo'lim: Test Savollari (10 ta Savol)</h2>
-      <p class="section-desc">To'g'ri fe'l shaklini (am / is / are + ing) tanlang.</p>
-      <div id="mcq-container"></div>
-    </section>
-
-    <!-- 2-BO'LIM: 10 ta TARJIMA -->
-    <section class="section-card">
-      <h2 class="section-title">🔄 2-Bo'lim: O'zbekchadan Inglizchaga Tarjima (10 ta Gap)</h2>
-      <p class="section-desc">Oddiy kundalik gaplarni inglizchaga tarjima qiling.</p>
-      <div id="trans-container"></div>
-    </section>
-
-    <!-- 3-BO'LIM: 10 ta XATOLARNI TUZATISH -->
-    <section class="section-card">
-      <h2 class="section-title">⚠️ 3-Bo'lim: Xatolarni Tuzating (10 ta Gap)</h2>
-      <p class="section-desc">Har bir gapda bitta xato bor (am/is/are yoki -ing tushib qolgan). Gapni to'g'rilab yozing.</p>
-      <div id="errors-container"></div>
-    </section>
-
-    <!-- 4-BO'LIM: 10 ta BO'SHLIQNI TO'LDIRISH -->
-    <section class="section-card">
-      <h2 class="section-title">🧩 4-Bo'lim: Bo'shliqlarni To'ldirish (10 ta Gap)</h2>
-      <p class="section-desc">Qavsdagi fe'lni Present Continuous shakliga qo'ying (am/is/are + verb-ing).</p>
-      <div id="blanks-container"></div>
-    </section>
-
-    <!-- 5-BO'LIM: 5 ta GAP TUZISH -->
-    <section class="section-card">
-      <h2 class="section-title">🔤 5-Bo'lim: So'zlardan Gap Tuzish (5 ta Mashq)</h2>
-      <p class="section-desc">So'zlarni bosib, to'g'ri gap hosil qiling.</p>
-      <div id="reorder-container"></div>
-    </section>
-
-    <!-- 6-BO'LIM: INSHO -->
-    <section class="section-card">
-      <h2 class="section-title">✍️ 6-Bo'lim: Kichik Yozma Mashq (5–6 ta Gap)</h2>
-      <p class="section-desc">
-        Mavzu: <b>"Hozir men va oilam nima qilyapmiz?"</b><br>
-        O'zingiz, onangiz, otangiz yoki do'stlaringiz ayni damda nima qilayotgani haqida 5-6 ta sodda gap yozing (Masalan: <i>I am doing my homework now. My mother is cooking in the kitchen...</i>).
+    <!-- STUDENT INFO BOX -->
+    <div class="student-info-box">
+      <label style="display:block; font-weight:700; margin-bottom:8px; font-size:0.95rem; color:#fff;">
+        👤 O'quvchi Ism va Familiyasi:
+      </label>
+      <input type="text" id="student-name" class="input-field" placeholder="Masalan: Anvar Karimov" style="max-width:400px;">
+      <p style="font-size:0.8rem; color:var(--text-muted); margin-top:6px;">
+        Vazifa topshirilganda natijangiz to'g'ridan-to'g'ri ustozingizning Telegramiga boradi.
       </p>
-      <textarea id="essay-input" class="input-field" placeholder="1. I am doing my homework now..."></textarea>
-    </section>
+    </div>
 
-    <!-- 7-BO'LIM: USTOZGA SAVOL -->
-    <section class="section-card">
-      <h2 class="section-title">🙋 7-Bo'lim: Ustozga Savol</h2>
-      <p class="section-desc">Mavzuda tushunmagan so'zingiz yoki savolingiz bo'lsa yozing:</p>
-      <textarea id="question-input" class="input-field" style="min-height: 70px;" placeholder="Ustoz, men..."></textarea>
-    </section>
+    <!-- VOCABULARY SECTION -->
+    <div class="section-title">
+      <span>📖</span> 15 ta Yangi Mavzu Lug'ati (A1 Daraja)
+    </div>
+    <div class="card">
+      <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:12px;">
+        Mavzuni to'liq tushunish va vazifalarni mustahkam bajarish uchun ushbu 15 ta kalit so'zni o'rganing:
+      </p>
+      <div class="vocab-grid">
+        
+          <div class="vocab-card">
+            <div class="vocab-head">
+              <span class="vocab-word">need</span>
+              <span class="vocab-pos">verb</span>
+            </div>
+            <div class="vocab-uz">muhtoj bo'lmoq, kerak bo'lmoq</div>
+            <div class="vocab-ex">"I need some water right now."</div>
+          </div>
+        
+          <div class="vocab-card">
+            <div class="vocab-head">
+              <span class="vocab-word">want</span>
+              <span class="vocab-pos">verb</span>
+            </div>
+            <div class="vocab-uz">xohlamoq, istamoq</div>
+            <div class="vocab-ex">"Do you want an apple?"</div>
+          </div>
+        
+          <div class="vocab-card">
+            <div class="vocab-head">
+              <span class="vocab-word">know</span>
+              <span class="vocab-pos">verb</span>
+            </div>
+            <div class="vocab-uz">bilmoq, tanimoq</div>
+            <div class="vocab-ex">"She knows the right answer."</div>
+          </div>
+        
+          <div class="vocab-card">
+            <div class="vocab-head">
+              <span class="vocab-word">understand</span>
+              <span class="vocab-pos">verb</span>
+            </div>
+            <div class="vocab-uz">tushunmoq</div>
+            <div class="vocab-ex">"I don't understand this word."</div>
+          </div>
+        
+          <div class="vocab-card">
+            <div class="vocab-head">
+              <span class="vocab-word">remember</span>
+              <span class="vocab-pos">verb</span>
+            </div>
+            <div class="vocab-uz">eslamoq, yodda tutmoq</div>
+            <div class="vocab-ex">"He remembers my birthday."</div>
+          </div>
+        
+          <div class="vocab-card">
+            <div class="vocab-head">
+              <span class="vocab-word">forget</span>
+              <span class="vocab-pos">verb</span>
+            </div>
+            <div class="vocab-uz">unutmoq</div>
+            <div class="vocab-ex">"Don't forget your homework."</div>
+          </div>
+        
+          <div class="vocab-card">
+            <div class="vocab-head">
+              <span class="vocab-word">belong</span>
+              <span class="vocab-pos">verb</span>
+            </div>
+            <div class="vocab-uz">tegishli bo'lmoq</div>
+            <div class="vocab-ex">"This blue jacket belongs to me."</div>
+          </div>
+        
+          <div class="vocab-card">
+            <div class="vocab-head">
+              <span class="vocab-word">advice</span>
+              <span class="vocab-pos">noun</span>
+            </div>
+            <div class="vocab-uz">maslahat</div>
+            <div class="vocab-ex">"I need some good advice from you."</div>
+          </div>
+        
+          <div class="vocab-card">
+            <div class="vocab-head">
+              <span class="vocab-word">help</span>
+              <span class="vocab-pos">noun / verb</span>
+            </div>
+            <div class="vocab-uz">yordam / yordam bermoq</div>
+            <div class="vocab-ex">"We need help with our heavy bags."</div>
+          </div>
+        
+          <div class="vocab-card">
+            <div class="vocab-head">
+              <span class="vocab-word">rest</span>
+              <span class="vocab-pos">noun / verb</span>
+            </div>
+            <div class="vocab-uz">dam olish / dam olmoq</div>
+            <div class="vocab-ex">"You look tired; you need to rest."</div>
+          </div>
+        
+          <div class="vocab-card">
+            <div class="vocab-head">
+              <span class="vocab-word">medicine</span>
+              <span class="vocab-pos">noun</span>
+            </div>
+            <div class="vocab-uz">dori</div>
+            <div class="vocab-ex">"She is sick and needs medicine."</div>
+          </div>
+        
+          <div class="vocab-card">
+            <div class="vocab-head">
+              <span class="vocab-word">decision</span>
+              <span class="vocab-pos">noun</span>
+            </div>
+            <div class="vocab-uz">qaror</div>
+            <div class="vocab-ex">"I need to make a quick decision."</div>
+          </div>
+        
+          <div class="vocab-card">
+            <div class="vocab-head">
+              <span class="vocab-word">hungry</span>
+              <span class="vocab-pos">adj</span>
+            </div>
+            <div class="vocab-uz">och, qorni ochgan</div>
+            <div class="vocab-ex">"I am hungry; I need to eat something."</div>
+          </div>
+        
+          <div class="vocab-card">
+            <div class="vocab-head">
+              <span class="vocab-word">thirsty</span>
+              <span class="vocab-pos">adj</span>
+            </div>
+            <div class="vocab-uz">chanqagan</div>
+            <div class="vocab-ex">"He is thirsty; he needs a glass of water."</div>
+          </div>
+        
+          <div class="vocab-card">
+            <div class="vocab-head">
+              <span class="vocab-word">tired</span>
+              <span class="vocab-pos">adj</span>
+            </div>
+            <div class="vocab-uz">charchagan, horg'in</div>
+            <div class="vocab-ex">"They are tired and need to sleep."</div>
+          </div>
+        
+      </div>
+    </div>
 
-    <button type="button" class="btn-submit" id="submit-btn" onclick="submitHomework()">
-      Vazifani Ustozga Yuborish (Telegram) 🚀
-    </button>
-    <div id="toast-msg" class="toast-box"></div>
+    <!-- VOCABULARY PRACTICE QUIZ -->
+    <div class="section-title">
+      <span>🔤</span> 1-Bo'lim: 15 ta Lug'at Testi (So'zlarni tekshirish)
+    </div>
+    <div class="card">
+      <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:15px;">
+        Yangi 15 ta so'zdan to'g'ri variantni tanlang:
+      </p>
+      
+        <div style="margin-bottom: 1.2rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05);">
+          <div class="q-text">1. Biror narsaga jismoniy yoki zaruriy ehtiyoj sezmoq:</div>
+          <div class="options-grid">
+            
+                <label class="option-label">
+                  <input type="radio" name="vq1" value="a" data-ans="b">
+                  <span><b>A)</b> forget</span>
+                </label>
+              
+                <label class="option-label">
+                  <input type="radio" name="vq1" value="b" data-ans="b">
+                  <span><b>B)</b> need</span>
+                </label>
+              
+                <label class="option-label">
+                  <input type="radio" name="vq1" value="c" data-ans="b">
+                  <span><b>C)</b> belong</span>
+                </label>
+              
+                <label class="option-label">
+                  <input type="radio" name="vq1" value="d" data-ans="b">
+                  <span><b>D)</b> play</span>
+                </label>
+              
+          </div>
+        </div>
+      
+        <div style="margin-bottom: 1.2rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05);">
+          <div class="q-text">2. Ko'ngildan biror narsani xohlamoq yoki istamoq:</div>
+          <div class="options-grid">
+            
+                <label class="option-label">
+                  <input type="radio" name="vq2" value="a" data-ans="a">
+                  <span><b>A)</b> want</span>
+                </label>
+              
+                <label class="option-label">
+                  <input type="radio" name="vq2" value="b" data-ans="a">
+                  <span><b>B)</b> understand</span>
+                </label>
+              
+                <label class="option-label">
+                  <input type="radio" name="vq2" value="c" data-ans="a">
+                  <span><b>C)</b> need to</span>
+                </label>
+              
+                <label class="option-label">
+                  <input type="radio" name="vq2" value="d" data-ans="a">
+                  <span><b>D)</b> belong</span>
+                </label>
+              
+          </div>
+        </div>
+      
+        <div style="margin-bottom: 1.2rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05);">
+          <div class="q-text">3. Miyada ma'lumotga yoki tanishlikka ega bo'lmoq:</div>
+          <div class="options-grid">
+            
+                <label class="option-label">
+                  <input type="radio" name="vq3" value="a" data-ans="c">
+                  <span><b>A)</b> rest</span>
+                </label>
+              
+                <label class="option-label">
+                  <input type="radio" name="vq3" value="b" data-ans="c">
+                  <span><b>B)</b> forget</span>
+                </label>
+              
+                <label class="option-label">
+                  <input type="radio" name="vq3" value="c" data-ans="c">
+                  <span><b>C)</b> know</span>
+                </label>
+              
+                <label class="option-label">
+                  <input type="radio" name="vq3" value="d" data-ans="c">
+                  <span><b>D)</b> hungry</span>
+                </label>
+              
+          </div>
+        </div>
+      
+        <div style="margin-bottom: 1.2rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05);">
+          <div class="q-text">4. Mavzuni yoki aytilgan so'zni aql bilan anglamoq:</div>
+          <div class="options-grid">
+            
+                <label class="option-label">
+                  <input type="radio" name="vq4" value="a" data-ans="d">
+                  <span><b>A)</b> hungry</span>
+                </label>
+              
+                <label class="option-label">
+                  <input type="radio" name="vq4" value="b" data-ans="d">
+                  <span><b>B)</b> tired</span>
+                </label>
+              
+                <label class="option-label">
+                  <input type="radio" name="vq4" value="c" data-ans="d">
+                  <span><b>C)</b> advice</span>
+                </label>
+              
+                <label class="option-label">
+                  <input type="radio" name="vq4" value="d" data-ans="d">
+                  <span><b>D)</b> understand</span>
+                </label>
+              
+          </div>
+        </div>
+      
+        <div style="margin-bottom: 1.2rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05);">
+          <div class="q-text">5. O'tgan narsani xotirada saqlamoq yoki yodga olmoq:</div>
+          <div class="options-grid">
+            
+                <label class="option-label">
+                  <input type="radio" name="vq5" value="a" data-ans="b">
+                  <span><b>A)</b> forget</span>
+                </label>
+              
+                <label class="option-label">
+                  <input type="radio" name="vq5" value="b" data-ans="b">
+                  <span><b>B)</b> remember</span>
+                </label>
+              
+                <label class="option-label">
+                  <input type="radio" name="vq5" value="c" data-ans="b">
+                  <span><b>C)</b> belong</span>
+                </label>
+              
+                <label class="option-label">
+                  <input type="radio" name="vq5" value="d" data-ans="b">
+                  <span><b>D)</b> need</span>
+                </label>
+              
+          </div>
+        </div>
+      
+        <div style="margin-bottom: 1.2rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05);">
+          <div class="q-text">6. Yoddan chiqarmoq, xotiradan yo'qotmoq:</div>
+          <div class="options-grid">
+            
+                <label class="option-label">
+                  <input type="radio" name="vq6" value="a" data-ans="a">
+                  <span><b>A)</b> forget</span>
+                </label>
+              
+                <label class="option-label">
+                  <input type="radio" name="vq6" value="b" data-ans="a">
+                  <span><b>B)</b> remember</span>
+                </label>
+              
+                <label class="option-label">
+                  <input type="radio" name="vq6" value="c" data-ans="a">
+                  <span><b>C)</b> know</span>
+                </label>
+              
+                <label class="option-label">
+                  <input type="radio" name="vq6" value="d" data-ans="a">
+                  <span><b>D)</b> want</span>
+                </label>
+              
+          </div>
+        </div>
+      
+        <div style="margin-bottom: 1.2rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05);">
+          <div class="q-text">7. Biror narsaning kimgadir tegishli bo'lishi:</div>
+          <div class="options-grid">
+            
+                <label class="option-label">
+                  <input type="radio" name="vq7" value="a" data-ans="c">
+                  <span><b>A)</b> advice</span>
+                </label>
+              
+                <label class="option-label">
+                  <input type="radio" name="vq7" value="b" data-ans="c">
+                  <span><b>B)</b> rest</span>
+                </label>
+              
+                <label class="option-label">
+                  <input type="radio" name="vq7" value="c" data-ans="c">
+                  <span><b>C)</b> belong</span>
+                </label>
+              
+                <label class="option-label">
+                  <input type="radio" name="vq7" value="d" data-ans="c">
+                  <span><b>D)</b> need to</span>
+                </label>
+              
+          </div>
+        </div>
+      
+        <div style="margin-bottom: 1.2rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05);">
+          <div class="q-text">8. Qiyin vaziyatda beriladigan foydali yo'l-yo'riq yoki fikr:</div>
+          <div class="options-grid">
+            
+                <label class="option-label">
+                  <input type="radio" name="vq8" value="a" data-ans="d">
+                  <span><b>A)</b> medicine</span>
+                </label>
+              
+                <label class="option-label">
+                  <input type="radio" name="vq8" value="b" data-ans="d">
+                  <span><b>B)</b> decision</span>
+                </label>
+              
+                <label class="option-label">
+                  <input type="radio" name="vq8" value="c" data-ans="d">
+                  <span><b>C)</b> belong</span>
+                </label>
+              
+                <label class="option-label">
+                  <input type="radio" name="vq8" value="d" data-ans="d">
+                  <span><b>D)</b> advice</span>
+                </label>
+              
+          </div>
+        </div>
+      
+        <div style="margin-bottom: 1.2rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05);">
+          <div class="q-text">9. Muhtoj bo'lganda ko'rsatiladigan ko'mak:</div>
+          <div class="options-grid">
+            
+                <label class="option-label">
+                  <input type="radio" name="vq9" value="a" data-ans="b">
+                  <span><b>A)</b> decision</span>
+                </label>
+              
+                <label class="option-label">
+                  <input type="radio" name="vq9" value="b" data-ans="b">
+                  <span><b>B)</b> help</span>
+                </label>
+              
+                <label class="option-label">
+                  <input type="radio" name="vq9" value="c" data-ans="b">
+                  <span><b>C)</b> thirsty</span>
+                </label>
+              
+                <label class="option-label">
+                  <input type="radio" name="vq9" value="d" data-ans="b">
+                  <span><b>D)</b> tired</span>
+                </label>
+              
+          </div>
+        </div>
+      
+        <div style="margin-bottom: 1.2rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05);">
+          <div class="q-text">10. Charchaganda kuch to'plash uchun qilinadigan tanaffus:</div>
+          <div class="options-grid">
+            
+                <label class="option-label">
+                  <input type="radio" name="vq10" value="a" data-ans="a">
+                  <span><b>A)</b> rest</span>
+                </label>
+              
+                <label class="option-label">
+                  <input type="radio" name="vq10" value="b" data-ans="a">
+                  <span><b>B)</b> advice</span>
+                </label>
+              
+                <label class="option-label">
+                  <input type="radio" name="vq10" value="c" data-ans="a">
+                  <span><b>C)</b> hungry</span>
+                </label>
+              
+                <label class="option-label">
+                  <input type="radio" name="vq10" value="d" data-ans="a">
+                  <span><b>D)</b> medicine</span>
+                </label>
+              
+          </div>
+        </div>
+      
+        <div style="margin-bottom: 1.2rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05);">
+          <div class="q-text">11. Kasal bo'lganda ichiladigan tabletka yoki vosita:</div>
+          <div class="options-grid">
+            
+                <label class="option-label">
+                  <input type="radio" name="vq11" value="a" data-ans="c">
+                  <span><b>A)</b> advice</span>
+                </label>
+              
+                <label class="option-label">
+                  <input type="radio" name="vq11" value="b" data-ans="c">
+                  <span><b>B)</b> decision</span>
+                </label>
+              
+                <label class="option-label">
+                  <input type="radio" name="vq11" value="c" data-ans="c">
+                  <span><b>C)</b> medicine</span>
+                </label>
+              
+                <label class="option-label">
+                  <input type="radio" name="vq11" value="d" data-ans="c">
+                  <span><b>D)</b> help</span>
+                </label>
+              
+          </div>
+        </div>
+      
+        <div style="margin-bottom: 1.2rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05);">
+          <div class="q-text">12. Bir nechta yo'ldan birini tanlash, qat'iy to'xtam:</div>
+          <div class="options-grid">
+            
+                <label class="option-label">
+                  <input type="radio" name="vq12" value="a" data-ans="b">
+                  <span><b>A)</b> rest</span>
+                </label>
+              
+                <label class="option-label">
+                  <input type="radio" name="vq12" value="b" data-ans="b">
+                  <span><b>B)</b> decision</span>
+                </label>
+              
+                <label class="option-label">
+                  <input type="radio" name="vq12" value="c" data-ans="b">
+                  <span><b>C)</b> thirsty</span>
+                </label>
+              
+                <label class="option-label">
+                  <input type="radio" name="vq12" value="d" data-ans="b">
+                  <span><b>D)</b> belong</span>
+                </label>
+              
+          </div>
+        </div>
+      
+        <div style="margin-bottom: 1.2rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05);">
+          <div class="q-text">13. Ovqat yeyishga qattiq ehtiyoj sezayotgan holat:</div>
+          <div class="options-grid">
+            
+                <label class="option-label">
+                  <input type="radio" name="vq13" value="a" data-ans="d">
+                  <span><b>A)</b> tired</span>
+                </label>
+              
+                <label class="option-label">
+                  <input type="radio" name="vq13" value="b" data-ans="d">
+                  <span><b>B)</b> thirsty</span>
+                </label>
+              
+                <label class="option-label">
+                  <input type="radio" name="vq13" value="c" data-ans="d">
+                  <span><b>C)</b> rest</span>
+                </label>
+              
+                <label class="option-label">
+                  <input type="radio" name="vq13" value="d" data-ans="d">
+                  <span><b>D)</b> hungry</span>
+                </label>
+              
+          </div>
+        </div>
+      
+        <div style="margin-bottom: 1.2rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05);">
+          <div class="q-text">14. Suv ichishga kuchli ehtiyoj sezayotgan holat:</div>
+          <div class="options-grid">
+            
+                <label class="option-label">
+                  <input type="radio" name="vq14" value="a" data-ans="a">
+                  <span><b>A)</b> thirsty</span>
+                </label>
+              
+                <label class="option-label">
+                  <input type="radio" name="vq14" value="b" data-ans="a">
+                  <span><b>B)</b> hungry</span>
+                </label>
+              
+                <label class="option-label">
+                  <input type="radio" name="vq14" value="c" data-ans="a">
+                  <span><b>C)</b> tired</span>
+                </label>
+              
+                <label class="option-label">
+                  <input type="radio" name="vq14" value="d" data-ans="a">
+                  <span><b>D)</b> advice</span>
+                </label>
+              
+          </div>
+        </div>
+      
+        <div style="margin-bottom: 1.2rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05);">
+          <div class="q-text">15. Ko'p ishlab yoki yugurib quvvati qolmagan holat:</div>
+          <div class="options-grid">
+            
+                <label class="option-label">
+                  <input type="radio" name="vq15" value="a" data-ans="c">
+                  <span><b>A)</b> hungry</span>
+                </label>
+              
+                <label class="option-label">
+                  <input type="radio" name="vq15" value="b" data-ans="c">
+                  <span><b>B)</b> thirsty</span>
+                </label>
+              
+                <label class="option-label">
+                  <input type="radio" name="vq15" value="c" data-ans="c">
+                  <span><b>C)</b> tired</span>
+                </label>
+              
+                <label class="option-label">
+                  <input type="radio" name="vq15" value="d" data-ans="c">
+                  <span><b>D)</b> medicine</span>
+                </label>
+              
+          </div>
+        </div>
+      
+    </div>
+
+    <!-- SECTION 2: 10 GRAMMAR MCQS (BALANCED OPTIONS) -->
+    <div class="section-title">
+      <span>🎯</span> 2-Bo'lim: 10 ta Tanlov Testi (Grammatika & Nozikliklar)
+    </div>
+    <div class="card">
+      <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:15px;">
+        Har bir savolda bitta to'g'ri variant mavjud. Variantlar (A, B, C, D) teng aralashtirilgan:
+      </p>
+      
+        <div style="margin-bottom: 1.4rem; padding-bottom: 1.2rem; border-bottom: 1px solid rgba(255,255,255,0.07);">
+          <div class="q-text">1. I am very thirsty. I ______ a glass of cold water.</div>
+          <div class="options-grid">
+            
+              <label class="option-label">
+                <input type="radio" name="q1" value="a" data-ans="c">
+                <span><b>A)</b> am needing</span>
+              </label>
+            
+              <label class="option-label">
+                <input type="radio" name="q1" value="b" data-ans="c">
+                <span><b>B)</b> needs</span>
+              </label>
+            
+              <label class="option-label">
+                <input type="radio" name="q1" value="c" data-ans="c">
+                <span><b>C)</b> need</span>
+              </label>
+            
+              <label class="option-label">
+                <input type="radio" name="q1" value="d" data-ans="c">
+                <span><b>D)</b> needing</span>
+              </label>
+            
+          </div>
+        </div>
+      
+        <div style="margin-bottom: 1.4rem; padding-bottom: 1.2rem; border-bottom: 1px solid rgba(255,255,255,0.07);">
+          <div class="q-text">2. She has an exam tomorrow morning, so she ______ tonight.</div>
+          <div class="options-grid">
+            
+              <label class="option-label">
+                <input type="radio" name="q2" value="a" data-ans="a">
+                <span><b>A)</b> needs to study</span>
+              </label>
+            
+              <label class="option-label">
+                <input type="radio" name="q2" value="b" data-ans="a">
+                <span><b>B)</b> need to study</span>
+              </label>
+            
+              <label class="option-label">
+                <input type="radio" name="q2" value="c" data-ans="a">
+                <span><b>C)</b> needs study</span>
+              </label>
+            
+              <label class="option-label">
+                <input type="radio" name="q2" value="d" data-ans="a">
+                <span><b>D)</b> is needing study</span>
+              </label>
+            
+          </div>
+        </div>
+      
+        <div style="margin-bottom: 1.4rem; padding-bottom: 1.2rem; border-bottom: 1px solid rgba(255,255,255,0.07);">
+          <div class="q-text">3. Which sentence is CORRECT?</div>
+          <div class="options-grid">
+            
+              <label class="option-label">
+                <input type="radio" name="q3" value="a" data-ans="d">
+                <span><b>A)</b> I am knowing your brother very well.</span>
+              </label>
+            
+              <label class="option-label">
+                <input type="radio" name="q3" value="b" data-ans="d">
+                <span><b>B)</b> She is wanting an orange juice.</span>
+              </label>
+            
+              <label class="option-label">
+                <input type="radio" name="q3" value="c" data-ans="d">
+                <span><b>C)</b> We are understanding the teacher now.</span>
+              </label>
+            
+              <label class="option-label">
+                <input type="radio" name="q3" value="d" data-ans="d">
+                <span><b>D)</b> I know your brother very well.</span>
+              </label>
+            
+          </div>
+        </div>
+      
+        <div style="margin-bottom: 1.4rem; padding-bottom: 1.2rem; border-bottom: 1px solid rgba(255,255,255,0.07);">
+          <div class="q-text">4. We are late for our class! We ______ a taxi right now.</div>
+          <div class="options-grid">
+            
+              <label class="option-label">
+                <input type="radio" name="q4" value="a" data-ans="b">
+                <span><b>A)</b> need to</span>
+              </label>
+            
+              <label class="option-label">
+                <input type="radio" name="q4" value="b" data-ans="b">
+                <span><b>B)</b> need</span>
+              </label>
+            
+              <label class="option-label">
+                <input type="radio" name="q4" value="c" data-ans="b">
+                <span><b>C)</b> are needing</span>
+              </label>
+            
+              <label class="option-label">
+                <input type="radio" name="q4" value="d" data-ans="b">
+                <span><b>D)</b> needs</span>
+              </label>
+            
+          </div>
+        </div>
+      
+        <div style="margin-bottom: 1.4rem; padding-bottom: 1.2rem; border-bottom: 1px solid rgba(255,255,255,0.07);">
+          <div class="q-text">5. Look at Dilshod! He ______ football with his friends in the yard.</div>
+          <div class="options-grid">
+            
+              <label class="option-label">
+                <input type="radio" name="q5" value="a" data-ans="c">
+                <span><b>A)</b> plays</span>
+              </label>
+            
+              <label class="option-label">
+                <input type="radio" name="q5" value="b" data-ans="c">
+                <span><b>B)</b> play</span>
+              </label>
+            
+              <label class="option-label">
+                <input type="radio" name="q5" value="c" data-ans="c">
+                <span><b>C)</b> is playing</span>
+              </label>
+            
+              <label class="option-label">
+                <input type="radio" name="q5" value="d" data-ans="c">
+                <span><b>D)</b> is play</span>
+              </label>
+            
+          </div>
+        </div>
+      
+        <div style="margin-bottom: 1.4rem; padding-bottom: 1.2rem; border-bottom: 1px solid rgba(255,255,255,0.07);">
+          <div class="q-text">6. ______ you ______ any help with your heavy suitcase?</div>
+          <div class="options-grid">
+            
+              <label class="option-label">
+                <input type="radio" name="q6" value="a" data-ans="a">
+                <span><b>A)</b> Do / need</span>
+              </label>
+            
+              <label class="option-label">
+                <input type="radio" name="q6" value="b" data-ans="a">
+                <span><b>B)</b> Are / needing</span>
+              </label>
+            
+              <label class="option-label">
+                <input type="radio" name="q6" value="c" data-ans="a">
+                <span><b>C)</b> Does / need</span>
+              </label>
+            
+              <label class="option-label">
+                <input type="radio" name="q6" value="d" data-ans="a">
+                <span><b>D)</b> Are / need</span>
+              </label>
+            
+          </div>
+        </div>
+      
+        <div style="margin-bottom: 1.4rem; padding-bottom: 1.2rem; border-bottom: 1px solid rgba(255,255,255,0.07);">
+          <div class="q-text">7. My brother is exhausted; he ______ to bed early.</div>
+          <div class="options-grid">
+            
+              <label class="option-label">
+                <input type="radio" name="q7" value="a" data-ans="d">
+                <span><b>A)</b> need go</span>
+              </label>
+            
+              <label class="option-label">
+                <input type="radio" name="q7" value="b" data-ans="d">
+                <span><b>B)</b> is needing go</span>
+              </label>
+            
+              <label class="option-label">
+                <input type="radio" name="q7" value="c" data-ans="d">
+                <span><b>C)</b> need to go</span>
+              </label>
+            
+              <label class="option-label">
+                <input type="radio" name="q7" value="d" data-ans="d">
+                <span><b>D)</b> needs to go</span>
+              </label>
+            
+          </div>
+        </div>
+      
+        <div style="margin-bottom: 1.4rem; padding-bottom: 1.2rem; border-bottom: 1px solid rgba(255,255,255,0.07);">
+          <div class="q-text">8. This blue backpack ______ to my classmate Sardor.</div>
+          <div class="options-grid">
+            
+              <label class="option-label">
+                <input type="radio" name="q8" value="a" data-ans="b">
+                <span><b>A)</b> is belonging</span>
+              </label>
+            
+              <label class="option-label">
+                <input type="radio" name="q8" value="b" data-ans="b">
+                <span><b>B)</b> belongs</span>
+              </label>
+            
+              <label class="option-label">
+                <input type="radio" name="q8" value="c" data-ans="b">
+                <span><b>C)</b> belong</span>
+              </label>
+            
+              <label class="option-label">
+                <input type="radio" name="q8" value="d" data-ans="b">
+                <span><b>D)</b> belonging</span>
+              </label>
+            
+          </div>
+        </div>
+      
+        <div style="margin-bottom: 1.4rem; padding-bottom: 1.2rem; border-bottom: 1px solid rgba(255,255,255,0.07);">
+          <div class="q-text">9. I have a terrible headache. I need ______ two aspirins.</div>
+          <div class="options-grid">
+            
+              <label class="option-label">
+                <input type="radio" name="q9" value="a" data-ans="c">
+                <span><b>A)</b> take</span>
+              </label>
+            
+              <label class="option-label">
+                <input type="radio" name="q9" value="b" data-ans="c">
+                <span><b>B)</b> taking</span>
+              </label>
+            
+              <label class="option-label">
+                <input type="radio" name="q9" value="c" data-ans="c">
+                <span><b>C)</b> to take</span>
+              </label>
+            
+              <label class="option-label">
+                <input type="radio" name="q9" value="d" data-ans="c">
+                <span><b>D)</b> to taking</span>
+              </label>
+            
+          </div>
+        </div>
+      
+        <div style="margin-bottom: 1.4rem; padding-bottom: 1.2rem; border-bottom: 1px solid rgba(255,255,255,0.07);">
+          <div class="q-text">10. She ______ what you are saying, please speak more slowly.</div>
+          <div class="options-grid">
+            
+              <label class="option-label">
+                <input type="radio" name="q10" value="a" data-ans="a">
+                <span><b>A)</b> doesn't understand</span>
+              </label>
+            
+              <label class="option-label">
+                <input type="radio" name="q10" value="b" data-ans="a">
+                <span><b>B)</b> isn't understanding</span>
+              </label>
+            
+              <label class="option-label">
+                <input type="radio" name="q10" value="c" data-ans="a">
+                <span><b>C)</b> don't understand</span>
+              </label>
+            
+              <label class="option-label">
+                <input type="radio" name="q10" value="d" data-ans="a">
+                <span><b>D)</b> not understand</span>
+              </label>
+            
+          </div>
+        </div>
+      
+    </div>
+
+    <!-- SECTION 3: 10 TRANSLATIONS -->
+    <div class="section-title">
+      <span>🌐</span> 3-Bo'lim: 10 ta Tarjima (O'zbekcha ➔ Inglizcha)
+    </div>
+    <div class="card">
+      <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:15px;">
+        Quyidagi gaplarni mavzu qoidalariga rioya qilgan holda to'liq ingliz tiliga tarjima qiling:
+      </p>
+      
+        <div style="margin-bottom: 1.2rem;">
+          <div class="q-text">1. Men hozir yangi qalamga muhtojman. (need + noun)</div>
+          <input type="text" name="tr1" class="input-field" placeholder="Inglizcha tarjimangizni yozing...">
+        </div>
+      
+        <div style="margin-bottom: 1.2rem;">
+          <div class="q-text">2. U (qiz bola) biroz uxlashi kerak. (need to + verb)</div>
+          <input type="text" name="tr2" class="input-field" placeholder="Inglizcha tarjimangizni yozing...">
+        </div>
+      
+        <div style="margin-bottom: 1.2rem;">
+          <div class="q-text">3. Siz bu darsni tushunyapsizmi? (stative verb: understand)</div>
+          <input type="text" name="tr3" class="input-field" placeholder="Inglizcha tarjimangizni yozing...">
+        </div>
+      
+        <div style="margin-bottom: 1.2rem;">
+          <div class="q-text">4. Bizga zudlik bilan yordam kerak. (need + noun)</div>
+          <input type="text" name="tr4" class="input-field" placeholder="Inglizcha tarjimangizni yozing...">
+        </div>
+      
+        <div style="margin-bottom: 1.2rem;">
+          <div class="q-text">5. Men bu so'zni bilaman, lekin ma'nosini eslay olmayapman. (stative verbs)</div>
+          <input type="text" name="tr5" class="input-field" placeholder="Inglizcha tarjimangizni yozing...">
+        </div>
+      
+        <div style="margin-bottom: 1.2rem;">
+          <div class="q-text">6. Ular yangi til o'rganishlari kerak. (need to + verb)</div>
+          <input type="text" name="tr6" class="input-field" placeholder="Inglizcha tarjimangizni yozing...">
+        </div>
+      
+        <div style="margin-bottom: 1.2rem;">
+          <div class="q-text">7. Qorning ochmi? Biror narsa yeyishni xohlaysanmi? (want to + verb)</div>
+          <input type="text" name="tr7" class="input-field" placeholder="Inglizcha tarjimangizni yozing...">
+        </div>
+      
+        <div style="margin-bottom: 1.2rem;">
+          <div class="q-text">8. Akamga bugun to'liq dam olish kerak. (need to rest)</div>
+          <input type="text" name="tr8" class="input-field" placeholder="Inglizcha tarjimangizni yozing...">
+        </div>
+      
+        <div style="margin-bottom: 1.2rem;">
+          <div class="q-text">9. Men bugun shifokorga borishim kerak. (need to go)</div>
+          <input type="text" name="tr9" class="input-field" placeholder="Inglizcha tarjimangizni yozing...">
+        </div>
+      
+        <div style="margin-bottom: 1.2rem;">
+          <div class="q-text">10. Bu qizil sumka menga tegishli. (belong)</div>
+          <input type="text" name="tr10" class="input-field" placeholder="Inglizcha tarjimangizni yozing...">
+        </div>
+      
+    </div>
+
+    <!-- SECTION 4: 10 ERROR CORRECTIONS -->
+    <div class="section-title">
+      <span>❌</span> 4-Bo'lim: 10 ta Xatoni Tuzating (Spot & Fix the Mistake)
+    </div>
+    <div class="card">
+      <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:15px;">
+        Har bir gapda bitta aniq grammatik xato bor. Gapni to'g'rilab, to'liq qaytadan yozing:
+      </p>
+      
+        <div style="margin-bottom: 1.3rem;">
+          <div class="err-box">❌ 1. <i>"I am knowing the answer right now."</i></div>
+          <input type="text" name="err1" class="input-field" placeholder="To'g'rilangan gapni yozing...">
+        </div>
+      
+        <div style="margin-bottom: 1.3rem;">
+          <div class="err-box">❌ 2. <i>"She need a glass of water."</i></div>
+          <input type="text" name="err2" class="input-field" placeholder="To'g'rilangan gapni yozing...">
+        </div>
+      
+        <div style="margin-bottom: 1.3rem;">
+          <div class="err-box">❌ 3. <i>"We need buy some fresh bread."</i></div>
+          <input type="text" name="err3" class="input-field" placeholder="To'g'rilangan gapni yozing...">
+        </div>
+      
+        <div style="margin-bottom: 1.3rem;">
+          <div class="err-box">❌ 4. <i>"He is wanting an ice cream."</i></div>
+          <input type="text" name="err4" class="input-field" placeholder="To'g'rilangan gapni yozing...">
+        </div>
+      
+        <div style="margin-bottom: 1.3rem;">
+          <div class="err-box">❌ 5. <i>"I need to a new phone."</i></div>
+          <input type="text" name="err5" class="input-field" placeholder="To'g'rilangan gapni yozing...">
+        </div>
+      
+        <div style="margin-bottom: 1.3rem;">
+          <div class="err-box">❌ 6. <i>"Are you needing any help?"</i></div>
+          <input type="text" name="err6" class="input-field" placeholder="To'g'rilangan gapni yozing...">
+        </div>
+      
+        <div style="margin-bottom: 1.3rem;">
+          <div class="err-box">❌ 7. <i>"They needs to leave early."</i></div>
+          <input type="text" name="err7" class="input-field" placeholder="To'g'rilangan gapni yozing...">
+        </div>
+      
+        <div style="margin-bottom: 1.3rem;">
+          <div class="err-box">❌ 8. <i>"I am understanding this lesson very well."</i></div>
+          <input type="text" name="err8" class="input-field" placeholder="To'g'rilangan gapni yozing...">
+        </div>
+      
+        <div style="margin-bottom: 1.3rem;">
+          <div class="err-box">❌ 9. <i>"She needs to a doctor."</i></div>
+          <input type="text" name="err9" class="input-field" placeholder="To'g'rilangan gapni yozing...">
+        </div>
+      
+        <div style="margin-bottom: 1.3rem;">
+          <div class="err-box">❌ 10. <i>"Does he needs to call his mother?"</i></div>
+          <input type="text" name="err10" class="input-field" placeholder="To'g'rilangan gapni yozing...">
+        </div>
+      
+    </div>
+
+    <!-- SECTION 5: 10 FILL-IN-THE-BLANKS -->
+    <div class="section-title">
+      <span>✏️</span> 5-Bo'lim: 10 ta Bo'shliqni To'ldirish (Qavsdagi fe'llar)
+    </div>
+    <div class="card">
+      <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:15px;">
+        Qavs ichidagi fe'lni to'g'ri shaklda bo'sh joyga qo'ying:
+      </p>
+      
+        <div style="margin-bottom: 1.2rem;">
+          <div class="q-text">1. I am very tired; I need ______ (sleep) for eight hours.</div>
+          <input type="text" name="blk1" class="input-field" placeholder="To'g'ri shaklini yozing...">
+        </div>
+      
+        <div style="margin-bottom: 1.2rem;">
+          <div class="q-text">2. She has a headache, so she needs ______ (medicine).</div>
+          <input type="text" name="blk2" class="input-field" placeholder="To'g'ri shaklini yozing...">
+        </div>
+      
+        <div style="margin-bottom: 1.2rem;">
+          <div class="q-text">3. Look at Anvar! He is ______ (run) in the stadium right now.</div>
+          <input type="text" name="blk3" class="input-field" placeholder="To'g'ri shaklini yozing...">
+        </div>
+      
+        <div style="margin-bottom: 1.2rem;">
+          <div class="q-text">4. I don't ______ (remember) his telephone number.</div>
+          <input type="text" name="blk4" class="input-field" placeholder="To'g'ri shaklini yozing...">
+        </div>
+      
+        <div style="margin-bottom: 1.2rem;">
+          <div class="q-text">5. We have no milk left; we need ______ (buy) some.</div>
+          <input type="text" name="blk5" class="input-field" placeholder="To'g'ri shaklini yozing...">
+        </div>
+      
+        <div style="margin-bottom: 1.2rem;">
+          <div class="q-text">6. Do you need ______ (a pen) to write the test?</div>
+          <input type="text" name="blk6" class="input-field" placeholder="To'g'ri shaklini yozing...">
+        </div>
+      
+        <div style="margin-bottom: 1.2rem;">
+          <div class="q-text">7. He is hungry; he needs ______ (eat) hot soup.</div>
+          <input type="text" name="blk7" class="input-field" placeholder="To'g'ri shaklini yozing...">
+        </div>
+      
+        <div style="margin-bottom: 1.2rem;">
+          <div class="q-text">8. She ______ (like) vanilla ice cream very much.</div>
+          <input type="text" name="blk8" class="input-field" placeholder="To'g'ri shaklini yozing...">
+        </div>
+      
+        <div style="margin-bottom: 1.2rem;">
+          <div class="q-text">9. The car has no fuel; we need ______ (petrol).</div>
+          <input type="text" name="blk9" class="input-field" placeholder="To'g'ri shaklini yozing...">
+        </div>
+      
+        <div style="margin-bottom: 1.2rem;">
+          <div class="q-text">10. It is raining outside, so you need ______ (take) an umbrella.</div>
+          <input type="text" name="blk10" class="input-field" placeholder="To'g'ri shaklini yozing...">
+        </div>
+      
+    </div>
+
+    <!-- SECTION 6: 5 WORD ORDER / REORDERS -->
+    <div class="section-title">
+      <span>🧩</span> 6-Bo'lim: 5 ta So'zlar Tartibi (Gap Tuzing)
+    </div>
+    <div class="card">
+      <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:15px;">
+        Aralash so'zlarni to'g'ri ketma-ketlikda joylashtirib, to'liq gap tuzing:
+      </p>
+      
+        <div style="margin-bottom: 1.3rem;">
+          <div class="q-text">1. [ I / need / a / glass / of / water / . ]</div>
+          <div class="q-context">💡 Ma'nosi: Menga bir stakan suv kerak.</div>
+          <input type="text" name="ord1" class="input-field" placeholder="To'g'ri gapni yozing...">
+        </div>
+      
+        <div style="margin-bottom: 1.3rem;">
+          <div class="q-text">2. [ She / needs / to / wake / up / early / . ]</div>
+          <div class="q-context">💡 Ma'nosi: U erta uyg'onishi kerak.</div>
+          <input type="text" name="ord2" class="input-field" placeholder="To'g'ri gapni yozing...">
+        </div>
+      
+        <div style="margin-bottom: 1.3rem;">
+          <div class="q-text">3. [ Do / you / need / any / help / ? ]</div>
+          <div class="q-context">💡 Ma'nosi: Sizga biror yordam kerakmi?</div>
+          <input type="text" name="ord3" class="input-field" placeholder="To'g'ri gapni yozing...">
+        </div>
+      
+        <div style="margin-bottom: 1.3rem;">
+          <div class="q-text">4. [ We / don't / understand / the / rule / . ]</div>
+          <div class="q-context">💡 Ma'nosi: Biz qoidani tushunmayapmiz.</div>
+          <input type="text" name="ord4" class="input-field" placeholder="To'g'ri gapni yozing...">
+        </div>
+      
+        <div style="margin-bottom: 1.3rem;">
+          <div class="q-text">5. [ He / needs / to / see / a / doctor / . ]</div>
+          <div class="q-context">💡 Ma'nosi: U shifokor qabuliga borishi kerak.</div>
+          <input type="text" name="ord5" class="input-field" placeholder="To'g'ri gapni yozing...">
+        </div>
+      
+    </div>
+
+    <!-- SECTION 7: MINI WRITING / ESSAY -->
+    <div class="section-title">
+      <span>✍️</span> 7-Bo'lim: Mini Amaliy Mashq (Yozma Nutq)
+    </div>
+    <div class="card">
+      <div class="q-text">Hozirgi ehtiyojlaringiz haqida yozing (4-5 ta gap)</div>
+      <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:12px;">
+        Sizga hozir nimalar kerak? 2 ta gapda 'need + ot' (masalan: I need a coffee), 2 ta gapda esa 'need to + fe'l' (masalan: I need to do my homework) qolipini qo'llang:
+      </p>
+      <textarea id="student-essay" class="input-field" placeholder="Masalan: Right now, I need a glass of cold water. I also need some fresh air. I need to finish this homework and then I need to sleep..."></textarea>
+    </div>
+
+    <!-- SECTION 8: QUESTION FOR TEACHER -->
+    <div class="section-title">
+      <span>❓</span> 8-Bo'lim: Ustozga Savol
+    </div>
+    <div class="card">
+      <div class="q-text">Ushbu dars yoki vazifa bo'yicha sizda qandaydir savol yoki tushunarsiz joy bormi?</div>
+      <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:10px;">
+        Savolingiz bo'lsa, quyiga yozing. Ustozingiz Telegram orqali javob beradilar:
+      </p>
+      <textarea id="student-question" class="input-field" style="min-height:65px;" placeholder="Masalan: 'Ustoz, have got bilan bog'liq yana qanday qoidalar bor?...'"></textarea>
+    </div>
+
+    <!-- SUBMIT BAR -->
+    <div class="submit-bar">
+      <h3 style="color:#fff; margin-bottom:8px; font-size:1.3rem;">Vazifani topshirishga tayyormisiz?</h3>
+      <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:20px;">
+        Barcha javoblarni tekshirib chiqing va quyidagi tugmani bosing. Natijangiz avtomatik ravishda ustozingizga jo'natiladi.
+      </p>
+      <button id="submit-btn" class="submit-btn" onclick="submitHomework()">Vazifani Topshirish 🚀</button>
+      <div id="toast-msg" class="toast"></div>
+    </div>
   </main>
 
   <script>
-    const MCQS = [
-      {
-        q: "Look! My brother ____________ a blue bicycle.",
-        opts: ["is riding", "are riding", "am riding", "rides"],
-        ans: "is riding"
-      },
-      {
-        q: "I ____________ an English book right now.",
-        opts: ["am reading", "is reading", "are reading", "read"],
-        ans: "am reading"
-      },
-      {
-        q: "Listen! The baby ____________ in the bedroom.",
-        opts: ["is crying", "are crying", "crying", "am crying"],
-        ans: "is crying"
-      },
-      {
-        q: "We ____________ dinner together at the moment.",
-        opts: ["are eating", "is eating", "am eating", "eats"],
-        ans: "are eating"
-      },
-      {
-        q: "Where is Sarah? — She ____________ in the kitchen.",
-        opts: ["is cooking", "are cooking", "cooks", "cooking"],
-        ans: "is cooking"
-      },
-      {
-        q: "The boys ____________ football in the school yard now.",
-        opts: ["are playing", "is playing", "plays", "am playing"],
-        ans: "are playing"
-      },
-      {
-        q: "Look outside! It ____________ heavily.",
-        opts: ["is raining", "are raining", "rains", "am raining"],
-        ans: "is raining"
-      },
-      {
-        q: "My sister ____________ her homework in her room.",
-        opts: ["is doing", "are doing", "doing", "am doing"],
-        ans: "is doing"
-      },
-      {
-        q: "They ____________ TV in the living room right now.",
-        opts: ["are watching", "is watching", "watches", "watching"],
-        ans: "are watching"
-      },
-      {
-        q: "I ____________ to music with my new headphones.",
-        opts: ["am listening", "is listening", "are listening", "listening"],
-        ans: "am listening"
-      }
-    ];
+    // LOCAL STORAGE AUTO-RESTORE
+    const STORAGE_KEY = "hw_stative_need_a1";
+    
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedName = localStorage.getItem(STORAGE_KEY + '_name') || localStorage.getItem('ulunur_student_name');
+      if (savedName) document.getElementById('student-name').value = savedName;
 
-    const TRANSLATIONS = [
-      "1. Men hozir choy ichyapman.",
-      "2. U (qiz bola) xonasida kitob o'qiyapti.",
-      "3. Bolalar bog'da yugurishyapti.",
-      "4. Onam oshxonada kechki ovqat pishiryapti.",
-      "5. Otam mashina yuvyapti.",
-      "6. Qara! Kuchuk mushukning orqasidan quvyapti.",
-      "7. Biz hozir ingliz tili darsini o'rganyapmiz.",
-      "8. U (o'g'il bola) karavotda uxlayapti.",
-      "9. Ular maktabga qarab ketyaptilar.",
-      "10. Men do'stimga xabar yozyapman."
-    ];
+      // Auto restore inputs
+      document.querySelectorAll('input[type="text"], textarea').forEach(input => {
+        const key = STORAGE_KEY + '_' + (input.id || input.name);
+        const saved = localStorage.getItem(key);
+        if (saved && !input.value) input.value = saved;
+        input.addEventListener('input', () => {
+          localStorage.setItem(key, input.value);
+        });
+      });
 
-    const ERRORS = [
-      "1. I reading an interesting book now.",
-      "2. She is cook dinner in the kitchen.",
-      "3. They is playing football in the park.",
-      "4. He are sleeping on the sofa right now.",
-      "5. We am watching a cartoon on TV.",
-      "6. Look! The bus coming down the street.",
-      "7. My mother is make a chocolate cake.",
-      "8. You is listening to music loudly.",
-      "9. The cat is run in the living room.",
-      "10. I am write a letter to my friend."
-    ];
-
-    const BLANKS = [
-      { s: "1. Look! The teacher ____________ (write) on the board." },
-      { s: "2. I ____________ (drink) fresh orange juice now." },
-      { s: "3. My father ____________ (drive) his car right now." },
-      { s: "4. The students ____________ (listen) to the teacher carefully." },
-      { s: "5. She ____________ (swim) in the swimming pool at the moment." },
-      { s: "6. It ____________ (snow) outside, look at the window!" },
-      { s: "7. We ____________ (sit) in the classroom now." },
-      { s: "8. My brother ____________ (clean) his room today." },
-      { s: "9. They ____________ (sing) a lovely song together." },
-      { s: "10. I ____________ (wear) a warm jacket because it is cold." }
-    ];
-
-    const REORDERS = [
-      {
-        words: ["I", "am", "doing", "my", "homework", "now."],
-        correct: "I am doing my homework now."
-      },
-      {
-        words: ["She", "is", "reading", "a", "good", "book."],
-        correct: "She is reading a good book."
-      },
-      {
-        words: ["They", "are", "playing", "in", "the", "park."],
-        correct: "They are playing in the park."
-      },
-      {
-        words: ["My", "mom", "is", "cooking", "in", "the", "kitchen."],
-        correct: "My mom is cooking in the kitchen."
-      },
-      {
-        words: ["We", "are", "watching", "a", "movie", "together."],
-        correct: "We are watching a movie together."
-      }
-    ];
-
-    let userMcqAnswers = {};
-
-    window.addEventListener("DOMContentLoaded", () => {
-      renderMcqs();
-      renderTranslations();
-      renderErrors();
-      renderBlanks();
-      renderReorders();
-
-      const saved = localStorage.getItem("tos_student_name");
-      if (saved) document.getElementById("student-name-input").value = saved;
+      // Auto restore radios
+      document.querySelectorAll('input[type="radio"]').forEach(radio => {
+        const key = STORAGE_KEY + '_' + radio.name;
+        const saved = localStorage.getItem(key);
+        if (saved === radio.value) radio.checked = true;
+        radio.addEventListener('change', () => {
+          localStorage.setItem(key, radio.value);
+        });
+      });
     });
 
-    function renderMcqs() {
-      const container = document.getElementById("mcq-container");
-      container.innerHTML = "";
-      const letters = ["A", "B", "C", "D"];
-
-      MCQS.forEach((item, idx) => {
-        const div = document.createElement("div");
-        div.className = "q-item";
-        div.id = `mcq-item-${idx}`;
-
-        const optsHtml = item.opts.map((opt, i) => `
-          <button type="button" class="opt-btn" onclick="selectMcq(${idx}, '${opt.replace(/'/g, "\\'")}', this)">
-            <span class="opt-badge">${letters[i]}</span>
-            <span>${opt}</span>
-          </button>
-        `).join("");
-
-        div.innerHTML = `
-          <div class="q-text">${idx + 1}. ${item.q}</div>
-          <div class="options-grid">${optsHtml}</div>
-        `;
-        container.appendChild(div);
-      });
-    }
-
-    function selectMcq(qIdx, chosen, btn) {
-      const item = MCQS[qIdx];
-      const parent = document.getElementById(`mcq-item-${qIdx}`);
-      const buttons = parent.querySelectorAll(".opt-btn");
-      buttons.forEach(b => b.disabled = true);
-
-      const isCorrect = (chosen === item.ans);
-      userMcqAnswers[qIdx] = { chosen, isCorrect };
-
-      if (isCorrect) {
-        btn.classList.add("correct");
-      } else {
-        btn.classList.add("wrong");
-        buttons.forEach(b => {
-          if (b.textContent.includes(item.ans)) b.classList.add("correct");
-        });
-      }
-    }
-
-    function renderTranslations() {
-      const container = document.getElementById("trans-container");
-      container.innerHTML = "";
-      TRANSLATIONS.forEach((t, i) => {
-        container.innerHTML += `
-          <div style="margin-bottom: 1.2rem;">
-            <div style="font-weight: 700; color: #cbd5e1; font-size: 0.95rem; margin-bottom: 6px;">
-              ${t}
-            </div>
-            <input type="text" class="input-field trans-field" placeholder="Inglizcha tarjimasini yozing...">
-          </div>
-        `;
-      });
-    }
-
-    function renderErrors() {
-      const container = document.getElementById("errors-container");
-      container.innerHTML = "";
-      ERRORS.forEach((e, i) => {
-        container.innerHTML += `
-          <div style="margin-bottom: 1.2rem;">
-            <div style="font-weight: 700; color: #fca5a5; font-size: 0.95rem; margin-bottom: 6px;">
-              ${e}
-            </div>
-            <input type="text" class="input-field error-field" placeholder="To'g'rilangan to'liq gapni yozing...">
-          </div>
-        `;
-      });
-    }
-
-    function renderBlanks() {
-      const container = document.getElementById("blanks-container");
-      container.innerHTML = "";
-      BLANKS.forEach((b, i) => {
-        container.innerHTML += `
-          <div style="margin-bottom: 1.2rem;">
-            <div style="font-weight: 700; color: #cbd5e1; font-size: 0.95rem; margin-bottom: 6px;">
-              ${b.s}
-            </div>
-            <input type="text" class="input-field blank-field" placeholder="am/is/are + fe'l-ing shaklida yozing...">
-          </div>
-        `;
-      });
-    }
-
-    function renderReorders() {
-      const container = document.getElementById("reorder-container");
-      container.innerHTML = "";
-
-      REORDERS.forEach((r, idx) => {
-        const box = document.createElement("div");
-        box.className = "reorder-box";
-
-        const chipsHtml = r.words.map(w => `
-          <button type="button" class="chip-btn" onclick="addWordToReorder(${idx}, '${w}', this)">${w}</button>
-        `).join("");
-
-        box.innerHTML = `
-          <div style="font-size: 0.85rem; font-weight: 700; color: #a5b4fc; margin-bottom: 8px;">Topshiriq ${idx + 1}:</div>
-          <div class="reorder-chips" id="chips-${idx}">${chipsHtml}</div>
-          <div style="display: flex; gap: 8px;">
-            <input type="text" class="input-field reorder-field" id="reorder-input-${idx}" placeholder="So'zlarni bosib gap tuzing..." readonly>
-            <button type="button" class="chip-btn" style="background: rgba(239,68,68,0.2); border-color: rgba(239,68,68,0.4);" onclick="resetReorder(${idx})">Tozalash</button>
-          </div>
-        `;
-        container.appendChild(box);
-      });
-    }
-
-    function addWordToReorder(idx, word, btn) {
-      const input = document.getElementById(`reorder-input-${idx}`);
-      const curr = input.value.trim();
-      input.value = curr ? curr + " " + word : word;
-      btn.disabled = true;
-    }
-
-    function resetReorder(idx) {
-      const input = document.getElementById(`reorder-input-${idx}`);
-      input.value = "";
-      const container = document.getElementById(`chips-${idx}`);
-      container.querySelectorAll("button").forEach(b => b.disabled = false);
-    }
-
     function submitHomework() {
-      const nameInput = document.getElementById("student-name-input");
+      const nameInput = document.getElementById("student-name");
       const name = nameInput.value.trim();
       if (!name) {
-        alert("⚠️ Iltimos, avval Ism va Familiyangizni kiriting!");
+        alert("Iltimos, avval ism va familiyangizni kiriting!");
         nameInput.focus();
         return;
       }
-      localStorage.setItem("tos_student_name", name);
+      localStorage.setItem('ulunur_student_name', name);
+      localStorage.setItem(STORAGE_KEY + '_name', name);
 
-      const transAnswers = Array.from(document.querySelectorAll(".trans-field")).map(i => i.value.trim());
-      const errorAnswers = Array.from(document.querySelectorAll(".error-field")).map(i => i.value.trim());
-      const blankAnswers = Array.from(document.querySelectorAll(".blank-field")).map(i => i.value.trim());
-      const reorderAnswers = Array.from(document.querySelectorAll(".reorder-field")).map(i => i.value.trim());
-      const essay = document.getElementById("essay-input").value.trim();
-      const question = document.getElementById("question-input").value.trim();
+      // Evaluate Vocab MCQs
+      let vqDone = 0;
+      for (let i = 1; i <= 15; i++) {
+        const sel = document.querySelector('input[name="vq' + i + '"]:checked');
+        if (sel && sel.value === sel.getAttribute('data-ans')) {
+          vqDone++;
+        }
+      }
 
-      const mcqDone = Object.values(userMcqAnswers).filter(a => a.isCorrect).length;
+      // Evaluate Grammar MCQs
+      let mcqDone = 0;
+      for (let i = 1; i <= 10; i++) {
+        const sel = document.querySelector('input[name="q' + i + '"]:checked');
+        if (sel && sel.value === sel.getAttribute('data-ans')) {
+          mcqDone++;
+        }
+      }
+
+      // Collect inputs
+      const transAnswers = [];
+      for (let i = 1; i <= 10; i++) {
+        const el = document.querySelector('input[name="tr' + i + '"]');
+        transAnswers.push(el ? el.value.trim() : "");
+      }
+
+      const errorAnswers = [];
+      for (let i = 1; i <= 10; i++) {
+        const el = document.querySelector('input[name="err' + i + '"]');
+        errorAnswers.push(el ? el.value.trim() : "");
+      }
+
+      const blankAnswers = [];
+      for (let i = 1; i <= 10; i++) {
+        const el = document.querySelector('input[name="blk' + i + '"]');
+        blankAnswers.push(el ? el.value.trim() : "");
+      }
+
+      const reorderAnswers = [];
+      for (let i = 1; i <= 5; i++) {
+        const el = document.querySelector('input[name="ord' + i + '"]');
+        reorderAnswers.push(el ? el.value.trim() : "");
+      }
+
+      const essay = document.getElementById("student-essay").value.trim();
+      const question = document.getElementById("student-question").value.trim();
+
       const transDone = transAnswers.filter(t => t.length > 3).length;
       const errorDone = errorAnswers.filter(e => e.length > 3).length;
       const blankDone = blankAnswers.filter(b => b.length > 2).length;
+      const reorderDone = reorderAnswers.filter(r => r.length > 3).length;
 
-      let score = 50;
-      score += (mcqDone * 2.5);
-      score += (transDone * 1.5);
-      score += (errorDone * 0.5);
-      score += (blankDone * 0.5);
+      // Preliminary score
+      let score = 40;
+      score += (mcqDone * 2.5); // max 25
+      score += (vqDone * 1.0);  // max 15
+      score += (transDone * 1.0); // max 10
+      score += (errorDone * 0.5); // max 5
       if (essay.length > 20) score += 5;
       score = Math.min(100, Math.round(score));
 
       let transText = "";
-      transAnswers.forEach((t, i) => { if (t) transText += `${i + 1}) <i>${t}</i>\n`; });
+      transAnswers.forEach((t, i) => { if (t) transText += (i + 1) + ") <i>" + t + "</i>\n"; });
       if (!transText) transText = "<i>(Bajarilmadi)</i>\n";
 
       let errorText = "";
-      errorAnswers.forEach((e, i) => { if (e) errorText += `${i + 1}) <i>${e}</i>\n`; });
+      errorAnswers.forEach((e, i) => { if (e) errorText += (i + 1) + ") <i>" + e + "</i>\n"; });
       if (!errorText) errorText = "<i>(Bajarilmadi)</i>\n";
 
       let blankText = "";
-      blankAnswers.forEach((b, i) => { if (b) blankText += `${i + 1}) <i>${b}</i>\n`; });
+      blankAnswers.forEach((b, i) => { if (b) blankText += (i + 1) + ") <i>" + b + "</i>\n"; });
       if (!blankText) blankText = "<i>(Bajarilmadi)</i>\n";
 
       let reorderText = "";
-      reorderAnswers.forEach((r, i) => { if (r) reorderText += `${i + 1}) <i>${r}</i>\n`; });
+      reorderAnswers.forEach((r, i) => { if (r) reorderText += (i + 1) + ") <i>" + r + "</i>\n"; });
       if (!reorderText) reorderText = "<i>(Bajarilmadi)</i>\n";
 
-      const payloadText = `🎓 <b>UYGA VAZIFA TOPSHIRILDI (A1)!</b>\n` +
-        `━━━━━━━━━━━━━━━━━━━━\n` +
-        `👤 <b>O'quvchi:</b> ${name}\n` +
-        `📚 <b>Mavzu:</b> Present Continuous (A1 Daraja)\n` +
-        `📊 <b>Dastlabki Baho:</b> <b>${score}/100</b>\n` +
-        `⏰ <b>Vaqt:</b> ${new Date().toLocaleString()}\n` +
-        `━━━━━━━━━━━━━━━━━━━━\n\n` +
-        `🎯 <b>1-Bo'lim (Testlar):</b> ${mcqDone}/10 ta to'g'ri\n\n` +
-        `🔄 <b>2-Bo'lim (Tarjimalar - ${transDone}/10):</b>\n${transText}\n` +
-        `⚠️ <b>3-Bo'lim (Xatolar - ${errorDone}/10):</b>\n${errorText}\n` +
-        `🧩 <b>4-Bo'lim (Bo'shliqlar - ${blankDone}/10):</b>\n${blankText}\n` +
-        `🔤 <b>5-Bo'lim (Gap tuzish):</b>\n${reorderText}\n` +
-        `✍️ <b>6-Bo'lim (Insho):</b>\n<i>"${essay ? essay.substring(0, 180) + (essay.length > 180 ? '...' : '') : '(Yozilmadi)'}"</i>\n\n` +
-        `🙋 <b>7-Bo'lim (Ustozga Savol):</b>\n<i>"${question || '(Savol yoq)'}"</i>\n\n` +
-        `🤖 <i>TeacherOS Avtopilot</i>`;
+      const payloadText = "🚀 <b>UYGA VAZIFA TOPSHIRILDI (A1 Daraja)!</b>\n" +
+        "━━━━━━━━━━━━━━━━━━━━\n" +
+        "👤 <b>O'quvchi:</b> " + name + "\n" +
+        "📚 <b>Mavzu:</b> Stative vs Dynamic Verbs & 'Need' Qolipi\n" +
+        "🎯 <b>Dastlabki Baho:</b> <b>" + score + "/100</b>\n" +
+        "⏰ <b>Vaqt:</b> " + new Date().toLocaleString() + "\n" +
+        "━━━━━━━━━━━━━━━━━━━━\n\n" +
+        "📖 <b>Lug'at Testi:</b> " + vqDone + "/15 ta to'g'ri\n" +
+        "🎯 <b>Grammatika MCQ:</b> " + mcqDone + "/10 ta to'g'ri\n\n" +
+        "🌐 <b>Tarjimalar (" + transDone + "/10):</b>\n" + transText + "\n" +
+        "❌ <b>Tuzatilgan Xatolar (" + errorDone + "/10):</b>\n" + errorText + "\n" +
+        "✏️ <b>Bo'shliqlar (" + blankDone + "/10):</b>\n" + blankText + "\n" +
+        "🧩 <b>Gap tuzish (" + reorderDone + "/5):</b>\n" + reorderText + "\n" +
+        "✍️ <b>Yozma Mashq:</b>\n<i>\"" + (essay ? essay.substring(0, 220) + (essay.length > 220 ? '...' : '') : '(Yozilmadi)') + "\"</i>\n\n" +
+        "❓ <b>Ustozga Savol:</b>\n<i>\"" + (question || '(Savol yoq)') + "\"</i>\n\n" +
+        "🤖 <i>TeacherOS Avtopilot</i>";
 
       const btn = document.getElementById("submit-btn");
       const toast = document.getElementById("toast-msg");
@@ -599,8 +1526,9 @@
 
       const BOT_TOKEN = "8979510433:AAGd4TEZb_rx4b8lZrFFfJfAz-dAI2ZRzMw";
       const TEACHER_ID = "6315515792";
+      const FALLBACK_ID = "7957347033";
 
-      fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+      fetch("https://api.telegram.org/bot" + BOT_TOKEN + "/sendMessage", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ chat_id: TEACHER_ID, text: payloadText, parse_mode: "HTML" })
@@ -614,25 +1542,25 @@
           toast.style.border = "1px solid var(--emerald)";
           toast.style.color = "#6ee7b7";
           toast.innerHTML = "🎉 Ajoyib! Vazifangiz ustozingizga muvaffaqiyatli yetkazildi!";
-          btn.textContent = "Yuborildi ✨";
+          btn.textContent = "Yuborildi ✅";
         } else {
-          return fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+          return fetch("https://api.telegram.org/bot" + BOT_TOKEN + "/sendMessage", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ chat_id: "7957347033", text: payloadText, parse_mode: "HTML" })
+            body: JSON.stringify({ chat_id: FALLBACK_ID, text: payloadText, parse_mode: "HTML" })
           }).then(r2 => r2.json()).then(d2 => {
             if (d2.ok) {
               confetti({ particleCount: 130, spread: 80, origin: { y: 0.6 } });
               toast.style.display = "block";
               toast.style.color = "#6ee7b7";
               toast.innerHTML = "🎉 Vazifangiz yetkazildi!";
-              btn.textContent = "Yuborildi ✨";
+              btn.textContent = "Yuborildi ✅";
             } else {
               toast.style.display = "block";
               toast.style.color = "#fca5a5";
               toast.innerHTML = "⚠️ Xatolik: " + d.description;
               btn.disabled = false;
-              btn.textContent = "Qayta urinish 🚀";
+              btn.textContent = "Qayta urinish 🔄";
             }
           });
         }
@@ -640,9 +1568,9 @@
       .catch(e => {
         toast.style.display = "block";
         toast.style.color = "#fca5a5";
-        toast.innerHTML = "❌ Internet aloqasida xatolik.";
+        toast.innerHTML = "⚠️ Internet aloqasida xatolik.";
         btn.disabled = false;
-        btn.textContent = "Qayta urinish 🚀";
+        btn.textContent = "Qayta urinish 🔄";
       });
     }
   </script>
